@@ -13,7 +13,10 @@ Do not alter index.html or main.css other than adding the links to the external 
 Write JavaScript code that works with the existing HTML and CSS to implement the required features.
 Hint: you may find it helpful to read up on and use the following jQuery methods: 
 .submit(), preventDefault(), toggleClass(), and closest().*/
+
+
 'use strict'; 
+/* global $ */
 
 function createNewListItem() {
   $('#js-shopping-list-form').submit(event => {
@@ -35,7 +38,7 @@ function createNewListItem() {
           </button>
         </div>
       </li>
-    `) 
+    `); 
     // add another html element to the list of stuff
   });
 }
@@ -46,7 +49,8 @@ function toggle () {
     $(theElementweWant).toggleClass('shopping-item__checked');
   });
 }
-  //event delegation 
+
+//event delegation 
 //check if element clicked has that class, if not add that class 
 
 $(toggle);
