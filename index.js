@@ -13,5 +13,32 @@ Do not alter index.html or main.css other than adding the links to the external 
 Write JavaScript code that works with the existing HTML and CSS to implement the required features.
 Hint: you may find it helpful to read up on and use the following jQuery methods: 
 .submit(), preventDefault(), toggleClass(), and closest().*/
-$('h1').fadeOut(); 
+function createNewListItem() {
+  $('#js-shopping-list-form').submit(event => {
+    // this stops the default form submission behavior
+    event.preventDefault();
+    // const userTextElement = $(event.currentTarget).find('#js-shopping-list-entry');
+    // console.log(userTextElement);
+    // //$(".js-display-user-text").text(`user text is:  ${userTextElement.val()}`);
+    // const userText = userTextElement.val();
+    const userText = $('.js-shopping-list-entry').val();
 
+
+    console.log(userText);
+    $('.shopping-list').append(`
+      <li>
+        <span class="shopping-item">${userText}</span>
+        <div class="shopping-item-controls">
+          <button class="shopping-item-toggle">
+            <span class="button-label">check</span>
+          </button>
+          <button class="shopping-item-delete">
+            <span class="button-label">delete</span>
+          </button>
+        </div>
+      </li>
+    `) 
+    // add another html element to the list of stuff
+  });
+}
+$(createNewListItem);
