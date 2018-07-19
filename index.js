@@ -42,7 +42,8 @@ function createNewListItem() {
 
 function toggle () {
   $('ul').on('click', '.shopping-item-toggle', function(event){
-    console.log('clicked');
+    const theElementweWant = $(this).closest('li').find('.shopping-item');
+    $(theElementweWant).toggleClass('shopping-item__checked');
   });
 }
   //event delegation 
