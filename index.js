@@ -50,7 +50,12 @@ function toggle () {
   });
 }
 
-//event delegation 
-//check if element clicked has that class, if not add that class 
+//permanently remove items from the list
+function deleteItems () {
+  $('ul').on('click', '.shopping-item-delete', function(event){  
+    const theElementToDelete = $(this).closest('li');
+    $(theElementToDelete).remove();
+  });
+}
 
-$(toggle);
+$(deleteItems); 
