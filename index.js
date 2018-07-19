@@ -24,8 +24,6 @@ function createNewListItem() {
     event.preventDefault();
     
     const userText = $('.js-shopping-list-entry').val();
-
-    console.log(userText);
     $('.shopping-list').append(`
       <li>
         <span class="shopping-item">${userText}</span>
@@ -39,7 +37,6 @@ function createNewListItem() {
         </div>
       </li>
     `); 
-    // add another html element to the list of stuff
   });
 }
 
@@ -50,7 +47,3 @@ function toggle () {
   });
 }
 
-//event delegation 
-//check if element clicked has that class, if not add that class 
-
-$(toggle);
