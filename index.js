@@ -17,45 +17,46 @@ Hint: you may find it helpful to read up on and use the following jQuery methods
 
 'use strict'; 
 /* global $ */
+function main() {
+  function createNewListItem() {
+    $('#js-shopping-list-form').submit(event => {
+      // this stops the default form submission behavior
+      event.preventDefault();
+      
+      const userText = $('.js-shopping-list-entry').val();
+      $('.shopping-list').append(`
+        <li>
+          <span class="shopping-item">${userText}</span>
+          <div class="shopping-item-controls">
+            <button class="shopping-item-toggle">
+              <span class="button-label">check</span>
+            </button>
+            <button class="shopping-item-delete">
+              <span class="button-label">delete</span>
+            </button>
+          </div>
+        </li>
+      `); 
+    });
+  }
 
-function createNewListItem() {
-  $('#js-shopping-list-form').submit(event => {
-    // this stops the default form submission behavior
-    event.preventDefault();
-    
-    const userText = $('.js-shopping-list-entry').val();
-    $('.shopping-list').append(`
-      <li>
-        <span class="shopping-item">${userText}</span>
-        <div class="shopping-item-controls">
-          <button class="shopping-item-toggle">
-            <span class="button-label">check</span>
-          </button>
-          <button class="shopping-item-delete">
-            <span class="button-label">delete</span>
-          </button>
-        </div>
-      </li>
-    `); 
-  });
+  function toggle () {
+    $('ul').on('click', '.shopping-item-toggle', function(event){
+      const theElementweWant = $(this).closest('li').find('.shopping-item');
+      $(theElementweWant).toggleClass('shopping-item__checked');
+    });
+  }
+
+  //permanently remove items from the list
+  function deleteItems () {
+    $('ul').on('click', '.shopping-item-delete', function(event){  
+      const theElementToDelete = $(this).closest('li');
+      $(theElementToDelete).remove();
+    });
+  }
+  createNewListItem();
+  toggle();
+  deleteItems();
 }
 
-function toggle () {
-  $('ul').on('click', '.shopping-item-toggle', function(event){
-    const theElementweWant = $(this).closest('li').find('.shopping-item');
-    $(theElementweWant).toggleClass('shopping-item__checked');
-  });
-}
-
-
-
-//permanently remove items from the list
-function deleteItems () {
-  $('ul').on('click', '.shopping-item-delete', function(event){  
-    const theElementToDelete = $(this).closest('li');
-    $(theElementToDelete).remove();
-  });
-}
-
-$(deleteItems); 
-
+$(main);
