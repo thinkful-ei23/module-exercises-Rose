@@ -13,16 +13,14 @@ Do not alter index.html or main.css other than adding the links to the external 
 Write JavaScript code that works with the existing HTML and CSS to implement the required features.
 Hint: you may find it helpful to read up on and use the following jQuery methods: 
 .submit(), preventDefault(), toggleClass(), and closest().*/
+'use strict'; 
+
 function createNewListItem() {
   $('#js-shopping-list-form').submit(event => {
     // this stops the default form submission behavior
     event.preventDefault();
-    // const userTextElement = $(event.currentTarget).find('#js-shopping-list-entry');
-    // console.log(userTextElement);
-    // //$(".js-display-user-text").text(`user text is:  ${userTextElement.val()}`);
-    // const userText = userTextElement.val();
+    
     const userText = $('.js-shopping-list-entry').val();
-
 
     console.log(userText);
     $('.shopping-list').append(`
@@ -41,4 +39,13 @@ function createNewListItem() {
     // add another html element to the list of stuff
   });
 }
-$(createNewListItem);
+
+function toggle () {
+  $('ul').on('click', '.shopping-item-toggle', function(event){
+    console.log('clicked');
+  });
+}
+  //event delegation 
+//check if element clicked has that class, if not add that class 
+
+$(toggle);
