@@ -47,3 +47,15 @@ function toggle () {
   });
 }
 
+
+
+//permanently remove items from the list
+function deleteItems () {
+  $('ul').on('click', '.shopping-item-delete', function(event){  
+    const theElementToDelete = $(this).closest('li');
+    $(theElementToDelete).remove();
+  });
+}
+
+$(deleteItems); 
+
