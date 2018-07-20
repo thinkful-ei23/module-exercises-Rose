@@ -1,11 +1,14 @@
 'use strict';
+/* global $ */
 
-const STORE = [
-  {name: "apples", checked: false},
-  {name: "oranges", checked: false},
-  {name: "milk", checked: true},
-  {name: "bread", checked: false}
-];
+const STORE = {
+  items: [ 
+    {name: "apples", checked: false},
+    {name: "oranges", checked: false},
+    {name: "milk", checked: true},
+    {name: "bread", checked: false}
+  ]
+};
 
 
 function generateItemElement(item, itemIndex, template) {
@@ -36,7 +39,7 @@ function generateShoppingItemsString(shoppingList) {
 function renderShoppingList() {
   // render the shopping list in the DOM
   console.log('`renderShoppingList` ran');
-  const shoppingListItemsString = generateShoppingItemsString(STORE);
+  const shoppingListItemsString = generateShoppingItemsString(STORE.items);
 
   // insert that HTML into the DOM
   $('.js-shopping-list').html(shoppingListItemsString);
@@ -45,7 +48,7 @@ function renderShoppingList() {
 
 function addItemToShoppingList(itemName) {
   console.log(`Adding "${itemName}" to shopping list`);
-  STORE.push({name: itemName, checked: false});
+  STORE.items.push({name: itemName, checked: false});
 }
 
 function handleNewItemSubmit() {
@@ -61,7 +64,7 @@ function handleNewItemSubmit() {
 
 function toggleCheckedForListItem(itemIndex) {
   console.log("Toggling checked property for item at index " + itemIndex);
-  STORE[itemIndex].checked = !STORE[itemIndex].checked;
+  STORE.items.[itemIndex].checked = !STORE.items.[itemIndex].checked;
 }
 
 
@@ -81,11 +84,22 @@ function handleItemCheckClicked() {
   });
 }
 
+function deleteItem(itemIndex) {
+  STORE.items.splice(itemIndex, 1);
+}
 
 function handleDeleteItemClicked() {
   // this function will be responsible for when users want to delete a shopping list
   // item
-  console.log('`handleDeleteItemClicked` ran')
+  //fetch info from DOM (which delete button was clicked)
+  //change STORE
+  //render
+  $('.js-shopping-list').on('click', '.js-item-delete', event => {
+    const itemIndex = getItemIndexFromElement(event.target);
+    deleteItem(itemIndex);
+    renderShoppingList();
+  });
+  console.log('`handleDeleteItemClicked` ran');
 }
 
 // this function will be our callback when the page loads. it's responsible for
