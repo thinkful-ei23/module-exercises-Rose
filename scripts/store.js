@@ -11,7 +11,6 @@ const store = (function() {
     let val = this.items.findIndex(function(element){
       return (element.id === id); 
     }); 
-    console.log(val);
     return val; 
   });
 
@@ -34,7 +33,8 @@ const store = (function() {
   const findAndUpdateName = (function(id, newName){
     try {
       Item.validateName(newName);
-      this.findById(id).name = newName;    
+      console.log(this);
+      this.items[this.findById(id)].name = newName;    
     } catch(error) {
       console.log('Cannot update name: ' + error.message);
     }
