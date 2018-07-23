@@ -5,7 +5,7 @@ const STORE = {
   items: [ 
     {name: 'apples', checked: false},
     {name: 'oranges', checked: false},
-    {name: 'milk', checked: true},
+    {name: 'milk', checked: false},
     {name: 'bread', checked: false}
   ],
   hideCheckedItems: false,
@@ -74,7 +74,7 @@ function toggleCheckedForListItem(itemIndex) {
   console.log('Toggling checked property for item at index ' + itemIndex);
   STORE.items[itemIndex].checked = !STORE.items[itemIndex].checked;
 }
-
+//returns index of items in array inside STORE 
 function getItemIndexFromElement(item) {
   const itemIndexString = $(item)
     .closest('.js-item-index-element')
@@ -157,18 +157,19 @@ function handleSearchItems() {
 }
 */
 function handleEditItems() {
-  $('.js-shopping-item').dblclick(function() {
+  $('.js-shopping-list').on('dblclick', '.js-shopping-item', function() {
     //change html in the DOM 
-    $(this).html('<input class="edit-item" type="text">');
-  });  
-  $('.js-shopping-item').on('keyup', function(e) {
-    if(e.key === 'Enter') {
-      let editedList = $('.edit-item').val();
-      let itemIndex = (getItemIndexFromElement(e.currentTarget));
-      STORE.items[itemIndex].name = editedList; 
-      //changeItems();
-      renderShoppingList();
-    }
+    $(this).html('<input class="edit-item" type="text">'); 
+
+    $('.js-shopping-item').on('keyup', function(e) {
+      if(e.key === 'Enter') {
+        let editedList = $('.edit-item').val();
+        let itemIndex = (getItemIndexFromElement(e.currentTarget));
+        STORE.items[itemIndex].name = editedList; 
+        //changeItems();
+        renderShoppingList();
+      }
+    });
   }); 
 }
 
