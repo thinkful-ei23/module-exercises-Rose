@@ -39,11 +39,20 @@ const store = (function() {
       console.log('Cannot update name: ' + error.message);
     }
   });
+
   const findAndDelete = (function(id){
     let val = this.items.findIndex(function(element){
       return element.id === id;
     });
     this.items.splice(val, 1);
+  });
+
+  const toggleCheckedFilter = (function(){
+    this.hideCheckedItems = !this.hideCheckedItems;
+  });
+
+  const setSearchTerm = (function(val){
+    this.searchTerm = val;
   });
 
   return {
@@ -55,5 +64,7 @@ const store = (function() {
     findAndToggleChecked,
     findAndUpdateName,
     findAndDelete,
+    toggleCheckedFilter,
+    setSearchTerm,
   };
 }());
