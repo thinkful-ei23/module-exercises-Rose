@@ -8,8 +8,13 @@ const store = (function() {
   const hideCheckedItems = false;
   const searchTerm = '';
   const findById = (function(id) {
-    return items.find(id);
+    let val = this.items.findIndex(function(element){
+      return (element.id === id); 
+    }); 
+    console.log(val);
+    return val; 
   });
+
   const addItem = (function(name) {
     try {
       Item.validateName(name);
@@ -18,9 +23,14 @@ const store = (function() {
       console.log('Cannot add item: ' + error.message);
     }
   });
+
   const findAndToggleChecked = (function(id) {
-    this.findById(id).checked = !this.findById(id).checked;
+    console.log(this);
+    let val = this.findById(id);
+    console.log(val);    
+    return this.items[val].checked = !this.items[val].checked;
   });
+
   const findAndUpdateName = (function(id, newName){
     try {
       Item.validateName(newName);
