@@ -6,6 +6,5 @@
 $(document).ready(function() {
   shoppingList.bindEventListeners();
   shoppingList.render();
-  shoppingList.render();
 });
 

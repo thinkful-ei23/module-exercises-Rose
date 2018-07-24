@@ -53,7 +53,12 @@ const store = (function() {
 
   const setSearchTerm = (function(val){
     this.searchTerm = val;
+    fakeFunction();
   });
+
+  const fakeFunction = function() {
+    console.log('fake');
+  }; 
 
   return {
     items,
